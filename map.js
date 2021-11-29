@@ -17,49 +17,15 @@ const users = [
 
 // if user is female add profession:'actor' 
 
-// O(logN)
-const index = users.findIndex(x => x.name === "Rohit");
 
-
-const updatedUsers = [
-    ...users.slice(0, index),
-    { id: 8, name: 'Hardik', gender: 'Male', age: 26},
-    ...users.slice(index)
-]
-
-console.log(users[index]);
-
-console.time("findIndex")
-const index1 = users.findIndex(x => x.name === "Rohit");
-const updatedUsers1 = [
-    ...users.slice(0, index),
-    {...users[index], age: 32, profession: 'Cricketer'},
-    ...users.slice(index + 1)
-]
-console.timeEnd("findIndex")
-
-// O(N)
-console.time("map")
-const updatedUserMap = users.map(x => {
-    if(x.name === "Rohit") {
-       return {...x, age: 32} 
+const newUser = users.map(x => {
+    if(x.gender === "male") {
+       return {...x, profession: 'cricketer'} 
+    } else {
+        return  {...x, profession:'actor'}
     }
-    return x;
 });
-console.timeEnd("map")
-
-console.log("updatedUserMap", updatedUserMap);
-
-const updatedUsers2 = [
-    ...users.slice(0, index),
-    ...users.slice(index + 1)
-]
-
-const updatedUserFilter = users.filter(x => x.name !== "Rohit")
-console.log(updatedUserFilter);
-
-
-console.log(updatedUsers2);
+console.log(newUser);
 
 
 
