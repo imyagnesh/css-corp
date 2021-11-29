@@ -13,3 +13,14 @@ const userProfession = users.map(x => {
     }
 })
 console.log(userProfession);
+
+// 1. If Record Found then it will return index of record
+// else return -1
+const index = users.findIndex(item => item.name === "sanatan")
+console.log(index);
+
+// 2. Every method will check all records.
+
+const isEveryoneAdult = users.every(item => item.age >= 18);
+
+console.log(isEveryoneAdult);
