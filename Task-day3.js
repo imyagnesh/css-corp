@@ -17,7 +17,7 @@ const sortByPropetyValue = (propName) => {
 
 console.time("sep-start");
 users.sort(sortByPropetyValue("name"));
-const groupByAge1 = users.reduce((p, c) => {
+const groupByAge = users.reduce((p, c) => {
     const ageGroup = Math.floor(c.age/10);
     const key = `${ageGroup}0-${ageGroup}9`;
 
@@ -27,4 +27,4 @@ const groupByAge1 = users.reduce((p, c) => {
     return {...p, [key]: [...(p[key] = p[key] || []), c]};
 }, {});
 console.timeEnd("sep-start");
-console.log(groupByAge1);
+console.log(groupByAge);
