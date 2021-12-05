@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log("hello"),console.log("appfile"),console.log("index"),console.log("a from appjs")})();
