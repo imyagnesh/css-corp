@@ -1,0 +1,1 @@
+console.log("Hello node and webpack setup")
