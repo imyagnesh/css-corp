@@ -5,6 +5,11 @@ const users = [
     { id: 6, name: 'RMitali Raj', gender: 'Female', age: 38, proefession: 'Cricketer'},
 ]
 
-const maleCricketer = users.filter(item => item.gender === 'Male' && item.proefession === 'Cricketer');
-
-console.log(maleCricketer);
+const groupByAgeSortName = users.reduce((p, c) => {
+    const ageGroup = Math.floor(c.age/10);
+    const key = `${ageGroup}0-${ageGroup}9`;
+    (p[key] =p[key] || []).push(c);
+    p[key].sort((a,b) => a.name !== b.name ? a.name < b.name ? -1 : 1 : 0);
+    return p; 
+}, {});
+console.log(groupByAgeSortName); 
