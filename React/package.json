@@ -1,0 +1,50 @@
+{
+  "name": "css-corp",
+  "version": "0.0.1",
+  "description": "React Task",
+  "main": "index.js",
+  "scripts": {
+    "finalBuild": "webpack",
+    "start": "webpack serve --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajravikum/css-corp.git"
+  },
+  "keywords": [
+    "react",
+    "javascript",
+    "es6",
+    "redux",
+    "mobx",
+    "nodeJs"
+  ],
+  "author": "RajarajanRavikumar (Rajarajan.Ravikumar@csscorp.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rajravikum/css-corp/issues"
+  },
+  "homepage": "https://github.com/rajravikum/css-corp#readme",
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.16.3",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "babel-loader": "^8.2.3",
+    "eslint": "^8.4.1",
+    "eslint-config-airbnb": "^19.0.2",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "html-webpack-plugin": "^5.5.0",
+    "prettier": "2.5.1",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
+  },
+  "dependencies": {
+    "react": "^17.0.2"
+  }
+}
