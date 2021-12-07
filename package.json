@@ -1,7 +1,7 @@
 {
   "name": "css-corp",
-  "version": "0.0.1",
-  "description": "react training",
+  "version": "1.0.0",
+  "description": "React training",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -10,35 +10,36 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/imyagnesh/css-corp.git"
+    "url": "git+https://github.com/rsuvitha/css-corp.git"
   },
   "keywords": [
-    "react",
     "javascript",
-    "es6",
+    "react",
     "redux",
-    "mobx"
+    "mobx",
+    "es6"
   ],
-  "author": "Yagnesh Modh (yagnesh.modh@gmail.com)",
+  "author": "Suvitha Rajasekaran (suvitha.rajasekaran@csscorp.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/imyagnesh/css-corp/issues"
+    "url": "https://github.com/rsuvitha/css-corp/issues"
   },
-  "homepage": "https://github.com/imyagnesh/css-corp#readme",
+  "homepage": "https://github.com/rsuvitha/css-corp#readme",
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/eslint-parser": "^7.16.3",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
+    "Babel": "^0.0.1",
     "babel-loader": "^8.2.3",
-    "eslint": "^8.3.0",
+    "eslint": "^8.4.0",
     "eslint-config-airbnb": "^19.0.2",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "html-webpack-plugin": "^5.5.0",
-    "prettier": "2.5.0",
+    "prettier": "2.5.1",
     "webpack": "^5.64.4",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.6.0"
