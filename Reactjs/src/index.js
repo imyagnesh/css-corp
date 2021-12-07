@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Userinfo from './Userinfo'
+import Userinfo from './Userinfo';
 
 
 ReactDOM.render(
