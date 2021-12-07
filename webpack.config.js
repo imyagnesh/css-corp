@@ -14,7 +14,6 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader',
-                
       },
     ],
   },
@@ -22,4 +21,4 @@ module.exports = {
     template: './public/index.html',
     filename: 'index.html',
   })],
-}
+};
