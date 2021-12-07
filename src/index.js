@@ -1,8 +1,19 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import User from './user';
 
-import { a } from './app';
+// ReactDOM.render (
+//    <div>
+//    <h1>Full Name is::</h1>
+//    <User firstname="Lavanya" lastname="Ramanijni"/>
+//    </div>,
+//    document.getElementById('root')
+// );
 
-console.log(a);
-
-console.log("hello");
-
-console.log("hello how are you?");
+ReactDOM.render(
+  <div>
+    <h1>My First React work</h1>
+    <User firstname="Lavanya" lastname="Ramanijni" />
+  </div>,
+  document.getElementById('root'),
+);
