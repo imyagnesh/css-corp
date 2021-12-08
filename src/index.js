@@ -39,12 +39,4 @@ import Userinfo from './userinfo';
 //   }
 // }
 
-ReactDOM.render(
-  <div>
-    <h1>Hello from React</h1>
-    <input type="checkbox" />
-    <App title="Good Morning" />
-    <Userinfo firstName="john" lastName="sundar" />
-  </div>,
-  document.getElementById('root'),
-);
+ReactDOM.render(<App name="Yagnesh" />, document.getElementById('root'));
