@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import Userinfo from './userinfo';
+import Todo from './Pages/Todo';
+import './root.css';
 
 // Components
 // 1. function components
@@ -39,4 +39,4 @@ import Userinfo from './userinfo';
 //   }
 // }
 
-ReactDOM.render(<App name="Yagnesh" />, document.getElementById('root'));
+ReactDOM.render(<Todo />, document.getElementById('root'));

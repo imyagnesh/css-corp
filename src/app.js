@@ -22,10 +22,18 @@ import Child1 from './Child1';
 // -> componentDidMount
 
 // 2. Updating
+// -> getDerivedStateFromProps
+// -> shouldComponentUpdate(M - IMP)
+// -> render
+// -> getSnapshotBeforeUpdate
+// -> componentDidUpdate
 
 // 3. UnMounting
+// -> componentWillUnmount(M - IMP)
 
 // 4. Error
+// -> getDerivedStateFromError
+// -> componentDidCatch
 
 class App extends Component {
   // 1. base on props value derive state value
@@ -36,15 +44,15 @@ class App extends Component {
     this.state = {
       i: 0,
       greet: `Hello, ${props.name}`,
+      user: {
+        name: 'Yagnesh',
+        age: 30,
+      },
     };
     this.setCounter = this.setCounter.bind(this);
     console.log('constructor');
     // API call and pass data to server
   }
-
-  state = {
-    i: 0,
-  };
 
   // base on state or props value define new State value
   static getDerivedStateFromProps(props, state) {
@@ -68,6 +76,28 @@ class App extends Component {
     // set state base on fetch data
   }
 
+  // capture currant screen
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    return 10;
+  }
+
+  // manipulate dom
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(snapshot);
+  }
+
+  static getDerivedStateFromError(error) {
+    return {
+      error,
+    };
+  }
+
+  componentDidCatch(error, info) {
+    // log the errors
+    console.log(error);
+    console.log(info);
+  }
+
   // state = {
   //   i: 0,
   // };
@@ -84,28 +114,51 @@ class App extends Component {
   //   }));
   // };
 
-  setCounter() {
+  setCounter(val) {
     // const btnType = event.target.name;
     this.setState(({ i }) => ({
-      i: i + 1,
+      i: i + val,
     }));
   }
 
+  changeUserName = () => {
+    this.setState(({ user }) => ({
+      user: { ...user, name: 'virat' },
+    }));
+  };
+
   // convert html into DOM
   render() {
-    const { i, greet } = this.state;
+    const { i, greet, user, error } = this.state;
+
+    if (error) {
+      return <h1>{error.message}</h1>;
+    }
+
     return (
       <>
         <h1 id="heading">{greet}</h1>
-        <button type="button" name="increment" onClick={this.setCounter}>
+        <button
+          type="button"
+          name="increment"
+          onClick={() => this.setCounter(1)}
+        >
           Incerement Counter
         </button>
         {i}
-        <button type="button" name="decrement" onClick={this.setCounter}>
+        <button
+          type="button"
+          name="decrement"
+          onClick={() => this.setCounter(-1)}
+        >
           Decrement Counter
         </button>
-        <Child1 />
-        <Child2 />
+        <h2>{user.name}</h2>
+        <Child1 counter={i} />
+        {i < 5 && <Child2 user={user} />}
+        <button type="button" onClick={this.changeUserName}>
+          Change Username
+        </button>
       </>
     );
   }
