@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Todo from './Pages/Todo';
+//import Todo from './Pages/Todo';
 import './root.css';
-
+import Weather from './Pages/weather';
 // Components
 // 1. function components
 // 2. class components
@@ -39,4 +39,5 @@ import './root.css';
 //   }
 // }
 
-ReactDOM.render(<Todo />, document.getElementById('root'));
+//ReactDOM.render(<Todo />, document.getElementById('root'));
+ReactDOM.render(<Weather />, document.getElementById('root'));
