@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #fafafa;
+  padding:2rem;
+}
+
+.container > h2 {
+  display: flex;
+  justify-content: center;
+}
+
+.container > form {
+  display: flex;
+  justify-content: center;
+}
+
+.container > .todo-list {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.container > .todo-list > .todo-item {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+}
+
+.container > .todo-list > .todo-item > p {
+  flex-grow: 1;
+  padding: 0 1rem;
+}
+.container > .filter-section {
+  display: flex;
+}
+
+.container > .filter-section > button {
+  flex-grow: 1;
+}
