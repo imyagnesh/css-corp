@@ -1,0 +1,6 @@
+.show-weather .weather-not-found {
+  display: none;
+}
+.weather-not-found .active {
+  display: inline-block;
+}
