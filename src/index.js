@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Todo from './Pages/Todo';
+import WeatherApp from './WeatherApp/WeatherApp';
 import './root.css';
 
 // Components
@@ -15,7 +16,7 @@ import './root.css';
 
 // const obj = {
 //   backgroundColor: true ? 'green' : 'blue',
-//   color: '#fff',
+//   color: '#fff',     
 // };
 
 // const App = ({ title, caption }) => {
@@ -39,4 +40,4 @@ import './root.css';
 //   }
 // }
 
-ReactDOM.render(<Todo />, document.getElementById('root'));
+ReactDOM.render(<WeatherApp />, document.getElementById('root'));
