@@ -30,7 +30,6 @@ export default class WeatherReport extends Component {
         cityWeather = weatherList
             .filter((x) => x.city === selectedCity)
             .map((item) => (
-              //  console.log(item);
               <div className="flex justify-center" key={item.city}> {item.city } : {item.celcius}</div>
             ))}
 
