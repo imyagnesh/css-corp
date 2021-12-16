@@ -23,7 +23,6 @@ export default class WeatherReport extends Component {
   render() {
     console.log('render');
     const { weatherList,selectedCity } = this.state;
-    //console.log('select : ' +selectedCity);
     var result = weatherList.filter((x) => x.city === selectedCity);
     var cityWeather = (selectedCity!='') ? <div className="flex justify-center">Entered City is Not found</div> : '';
 
