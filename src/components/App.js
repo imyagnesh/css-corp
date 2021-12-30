@@ -23,6 +23,7 @@ class App extends Component {
       humidity: undefined,
       description: undefined,
       units: undefined,
+      icon: undefined,
       cities: [],
       error: undefined
     }
@@ -65,6 +66,7 @@ class App extends Component {
                   .then((res) => res.json())
                   .then((json) => {
                     dataWeather = json;
+                    console.log(dataWeather);
                     if (dataWeather != null) {
                       this.setState({
                         temperature: dataWeather.main.temp,
@@ -79,6 +81,7 @@ class App extends Component {
                         humidity: dataWeather.main.humidity,
                         description: dataWeather.weather[0].description,
                         units: this.selectRef.current.value,
+                        icon: "https://openweathermap.org/img/wn/"+dataWeather.weather[0].icon+"@2x.png",
                         error: ""
                       });
                     }
@@ -105,7 +108,7 @@ class App extends Component {
   searchLocations = debounce(this.searchLocations, 500);
 
   render() {
-    const { temperature, minTemp, maxTemp, windSpeed, windDirection, pressure, feelsLike, city, country, humidity, description, units, error } = this.state;
+    const { temperature, minTemp, maxTemp, windSpeed, windDirection, pressure, feelsLike, city, country, humidity, description, icon, units, error } = this.state;
     return (
       <div className="w-7/12 m-auto container p-2 bg-slate-100">
         <div className="border-solid border-b-2 border-red-800 text-2xl tracking-wide font-bold site-heading my-3">
@@ -131,6 +134,7 @@ class App extends Component {
             description={description}
             error={error}
             units={units}
+            icon={icon}
           />
         </div>
       </div>
