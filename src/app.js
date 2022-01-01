@@ -1,183 +1,67 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Child2 from './Child2';
-import Child1 from './Child1';
+import React, { useState, useEffect } from 'react';
+import Searchinput from './Pages/weather/SearchInput';
+import Units from './Pages/weather/Setunits'
+import Searchresult from './Pages/weather/SearchResults';
+import useDebounce from './Pages/weather/Debounce';
+import Context from './context/setting';
+import {getData, getUnitsData} from './context/Api';
 
-// Import file
 
-// User Info
-// First Name
-// Last Name
+const App = () =>{
+  const [searchTerm, setSearchTerm] = useState('');
+  const [unitSearch, setUnitSearch ]= useState('');
+  const [results, setResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const debouncedSearchTerm = useDebounce(searchTerm, 1000);
+  const debouncedUnitSearch = useDebounce(unitSearch, 1000);
+  
+  useEffect(
+    () => {
+      if (debouncedSearchTerm) {
+        setIsSearching(true);
+        getData(debouncedSearchTerm)
+        .then(results => {
+          setIsSearching(false);
+          setResults(results);
+        });
+      }
+      else if (debouncedUnitSearch) {
+        setIsSearching(true);
+        getUnitsData(debouncedSearchTerm,debouncedUnitSearch)
+        .then(results => {
+          setIsSearching(false);
+          setResults(results);
+        });
+      }  else {
+        setResults([]);
+      }
+    },
+    [debouncedSearchTerm,debouncedUnitSearch]
+  );
 
-// Display Full Name
-
-// Props Or state value change that time component will rerender
-
-// Life Cycle Method
-
-// 1. Mounting
-// -> constructor
-// -> getDerivedStateFromProps
-// -> render
-// -> componentDidMount
-
-// 2. Updating
-// -> getDerivedStateFromProps
-// -> shouldComponentUpdate(M - IMP)
-// -> render
-// -> getSnapshotBeforeUpdate
-// -> componentDidUpdate
-
-// 3. UnMounting
-// -> componentWillUnmount(M - IMP)
-
-// 4. Error
-// -> getDerivedStateFromError
-// -> componentDidCatch
-
-class App extends Component {
-  // 1. base on props value derive state value
-  // 2. Analytics
-  // 3. Bind methods
-  constructor(props) {
-    super(props);
-    this.state = {
-      i: 0,
-      greet: `Hello, ${props.name}`,
-      user: {
-        name: 'Yagnesh',
-        age: 30,
-      },
-    };
-    this.setCounter = this.setCounter.bind(this);
-    console.log('constructor');
-    // API call and pass data to server
-  }
-
-  // base on state or props value define new State value
-  static getDerivedStateFromProps(props, state) {
-    console.log('getDerivedStateFromProps');
-    return {
-      greet: `Hello, ${props.name}`,
-    };
-  }
-
-  // Manipulate DOM element
-  // Display Data on page load
-  // register an event
-  // Analytics
-  componentDidMount() {
-    // call only once
-    console.log(document.getElementById('heading'));
-    document.addEventListener('copy', () => {
-      console.log('copied');
-    });
-    // API call and fetch data
-    // set state base on fetch data
-  }
-
-  // capture currant screen
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-    return 10;
-  }
-
-  // manipulate dom
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log(snapshot);
-  }
-
-  static getDerivedStateFromError(error) {
-    return {
-      error,
-    };
-  }
-
-  componentDidCatch(error, info) {
-    // log the errors
-    console.log(error);
-    console.log(info);
-  }
-
-  // state = {
-  //   i: 0,
-  // };
-
-  // increment = () => {
-  //   this.setState(({ i }) => ({
-  //     i: i + 1,
-  //   }));
-  // };
-
-  // decrement = () => {
-  //   this.setState(({ i }) => ({
-  //     i: i - 1,
-  //   }));
-  // };
-
-  setCounter(val) {
-    // const btnType = event.target.name;
-    this.setState(({ i }) => ({
-      i: i + val,
-    }));
-  }
-
-  changeUserName = () => {
-    this.setState(({ user }) => ({
-      user: { ...user, name: 'virat' },
-    }));
-  };
-
-  // convert html into DOM
-  render() {
-    const { i, greet, user, error } = this.state;
-
-    if (error) {
-      return <h1>{error.message}</h1>;
-    }
-
-    return (
-      <>
-        <h1 id="heading">{greet}</h1>
-        <button
-          type="button"
-          name="increment"
-          onClick={() => this.setCounter(1)}
-        >
-          Incerement Counter
-        </button>
-        {i}
-        <button
-          type="button"
-          name="decrement"
-          onClick={() => this.setCounter(-1)}
-        >
-          Decrement Counter
-        </button>
-        <h2>{user.name}</h2>
-        <Child1 counter={i} />
-        {i < 5 && <Child2 user={user} />}
-        <button type="button" onClick={this.changeUserName}>
-          Change Username
-        </button>
-      </>
-    );
-  }
+  return (
+    <div className="p-10 w-full">
+      <section className="bg-gray-200 p-2">
+        <div className="container mx-auto">
+          <div className="bg-gray-100">
+            <h2 className="font-medium text-xl pl-5 pt-10 border-b-2 border-red-500">{Context.Weatertitle}</h2>
+            <div class="mt-4 ml-4 mr-5">
+              <div className="flex">
+                  <Searchinput setSearchTerm={setSearchTerm}></Searchinput>
+                  <Units setUnitSearch={setUnitSearch}></Units>
+              </div>
+            </div>
+            {isSearching && 
+              <div className="flex justify-center">
+                <img  src="./asstes/loader.gif" alt="loader" width="50" height="50" />
+              </div>
+            }
+            <Searchresult result={results}></Searchresult>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
 }
-
-// const App = ({ title, caption }) => (
-//   <>
-//     <h1>{title}</h1>
-//     <h2>{caption}</h2>
-//   </>
-// );
-
-// App.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   caption: PropTypes.string,
-// };
-
-// App.defaultProps = {
-//   caption: 'Great day...',
-// };
 
 export default App;
