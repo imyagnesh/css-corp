@@ -2,18 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ErrorProvider from './context/errorContext';
 import LoadingProvider from './context/loadingContext';
-import Todo from './Pages/Todo';
+import App from './components/App';
 import './root.css';
 
-ReactDOM.render(
-  <LoadingProvider>
-    <ErrorProvider>
-      <Todo />
-    </ErrorProvider>
-  </LoadingProvider>,
-
-  document.getElementById('root'),
-);
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // Components
 // 1. function components
