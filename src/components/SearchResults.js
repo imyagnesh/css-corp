@@ -7,7 +7,7 @@ const SearchResults = (props) => {
     return (
         <>
         { cities.length > 0 &&
-            <div className="my-3 bg-white p-1">
+            <div className="my-3 bg-white p-1 space-x-1">
                 { citiesList }
             </div>
         }
