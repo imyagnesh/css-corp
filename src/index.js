@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+//import Todo from './Pages/Todo';
+import App from './components/app';
+import './root.css';
 
 // Components
 // 1. function components
@@ -38,4 +40,4 @@ import App from './App';
 //   }
 // }
 
-ReactDOM.render(<App name="Yagnesh" />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
