@@ -3,7 +3,6 @@ import axios from 'axios';
 import City from './searchlocations';
 import Weather from './Weather';
 
-
 class App extends React.Component {
 
     state = { weatherResult: null, searchtemperature: null }
