@@ -7,6 +7,7 @@ class searchlocations extends React.Component {
         this.state = { searchInputValue: "", searchtemperature: "" }
     }
     onFormSubmit = (event) => {
+
         event.preventDefault();
         this.props.onSearchSubmit(this.state.searchInputValue, this.state.searchtemperature)
     }

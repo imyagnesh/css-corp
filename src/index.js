@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //import Todo from './Pages/Todo';
 import App from './components/app';
-import './root.css';
+
 
 // Components
 // 1. function components
