@@ -1,0 +1,28 @@
+.btn-result {
+    @apply !bg-gradient-to-r via-[#e44e7d] from-[#a31494] to-[#d43e90] py-2 px-3 mr-3 mb-3 capitalize rounded-full text-white font-bold;
+}
+.bool-bold {
+    @apply w-full block text-xl absolute bottom-0;
+}
+.bool-bold-pad {
+    @apply w-full block text-xl pt-4  absolute bottom-0;
+}
+.form-input {
+    @apply font-bold outline-none bg-transparent block w-full py-2 sm:text-sm border-gray-300 rounded-md;
+}
+.col-3 {
+    @apply w-1/3 bg-gradient-to-b from-[#c411cc] to-[#f7664a] rounded-xl border-2 border-[#fff] p-2;
+}
+.col-2-units{
+    @apply not-italic normal-case;
+}
+.col-para{
+    @apply relative h-[3.5rem];
+}
+.col-2-top {
+    @apply w-1/2 p-3 rounded-xl bg-gradient-to-r from-[#a31494] to-[#d43e90] border-2 border-[#fff];
+}
+.col-2-bot {
+    @apply w-1/2 p-3 rounded-xl bg-gradient-to-r from-[#229efb] to-[#4f50e4] border-2 border-[#fff];
+}
+
