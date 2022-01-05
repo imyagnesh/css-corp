@@ -1,43 +1,23 @@
+//add core.js to support map array method for old browsers
+// https://reactjs.org/docs/javascript-environment-requirements.html
+import 'core-js/library/es6/map';
+
+//React also depends on requestAnimationFrame (even in test environments) add raf polyfill
+import 'raf/polyfill';
+
+// react polyfill to get async/await and fetch to work for IE browsers
+import "babel-polyfill";
+import "isomorphic-fetch";
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import AppHook from './AppHook';
-import Todo from './Pages/Todo';
-import './root.css';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<Todo />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
-// Components
-// 1. function components
-// 2. class components
-
-// Rules for React Components
-// 1. Name of the component should be always start with capital letter
-// 2. per component return only 1 html element
-// 3. replace class with className keyword
-// 4. for inline style use object and property Name should be in camelCase
-
-// const obj = {
-//   backgroundColor: true ? 'green' : 'blue',
-//   color: '#fff',
-// };
-
-// const App = ({ title, caption }) => {
-//   return (
-//     <>
-//       <h1 className="xyz pqr">{title}</h1>
-//       <h2 style={obj}>{caption}</h2>
-//     </>
-//   );
-// };
-
-// class App extends Component {
-//   render() {
-//     const { title, caption } = this.props;
-//     return (
-//       <>
-//         <h1>{title}</h1>
-//         <h2>{caption}</h2>
-//       </>
-//     );
-//   }
-// }
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+serviceWorker.unregister();
