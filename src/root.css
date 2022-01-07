@@ -43,4 +43,7 @@
   .location-pres p {
     @apply my-3 flex-auto mr-1.5 bg-gradient-to-r from-green-400 to-blue-500 p-5 text-center text-white text-lg font-semibold rounded-3xl;
   }
+  .location-input .search-icon {
+    @apply hidden;
+  }
 }
