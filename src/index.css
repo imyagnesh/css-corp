@@ -39,7 +39,8 @@ p {
 
 .weather-app {
   position: relative;
-  margin: 20px;
+  margin: 0 auto;
+  margin-top: 20px;
   width: 550px;
   height: 500px;
   border-radius: 5px;
@@ -166,7 +167,7 @@ p {
 }
 
 .weather-report > .conditions {
-  position: absolute;
+  position: unset;
   top: 45px;
   left: 26px;
   font-size: 0.6rem;
@@ -261,7 +262,7 @@ p {
 }
 
 .error-panel {
-  position: absolute;
+  position: unset;
   top: 150px;
   content: 'DD';
   width: 500px;
@@ -307,4 +308,7 @@ p {
   color: rgba(0, 0, 0, 0.3);
   content: 'Please wait...';
   text-align: center;
+}
+.weather-report .label {
+  text-transform: uppercase;
 }
