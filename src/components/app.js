@@ -16,11 +16,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="weather_container bg-gray-100 p-3">
-        <div className="bg-gray-50 p-4 rounded w-2/4 m-auto">
-          <h5 className="border-red-400 pt-2 font-semibold border-b-2">WeatherWatch</h5>
+        
           <City onSearchSubmit={this.SearchResults} />
           {this.state.weatherResult ? <Weather weatherResult={this.state.weatherResult} searchtemperature={this.state.searchtemperature} /> : <div></div>}
-        </div>
+       
       </div>
     )
   }
