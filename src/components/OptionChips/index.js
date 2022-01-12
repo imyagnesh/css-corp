@@ -4,7 +4,7 @@ const OptionChips = ({ cities, onSelectCity }) => {
   console.log('option chips');
 
   return (
-    <div className="search-results">
+    <>
       {cities.map((x) => (
         <div
           role="button"
@@ -15,7 +15,7 @@ const OptionChips = ({ cities, onSelectCity }) => {
           {x.name}
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

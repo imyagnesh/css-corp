@@ -1,68 +1,17 @@
-import React, { useCallback, useMemo, useReducer } from 'react';
+import React, { useContext } from 'react';
+
 import Input from '../../components/Input';
 import OptionChips from '../../components/OptionChips';
 import Select from '../../components/Select';
-import {
-  weatherAppInitialState,
-  weatherReducer,
-} from '../../reducers/weatherReducer';
+import { WeatherContext } from '../../context/weatherContext';
+
 import SelectedCity from './SelectedCity';
 
 const WeatherApp = () => {
-  const [state, dispatch] = useReducer(weatherReducer, weatherAppInitialState);
-  console.log(state);
-  const { location, cities, selectedCity, unit } = state;
+  const { onChangeLocation, onSelectCity, onChangeUnits, units, data } =
+    useContext(WeatherContext);
 
-  const loadCities = async (city) => {
-    try {
-      const res = await fetch(
-        `https://api.weatherserver.com/weather/cities/${city}`,
-      );
-      const json = await res.json();
-      dispatch({ type: 'LOAD_CITIES_SUCCESS', payload: json.results });
-    } catch (error) {}
-  };
-
-  const onChangeLocation = useCallback((event) => {
-    const city = event.target.value;
-    dispatch({ type: 'CHANGE_LOCATION', payload: city });
-    loadCities(city);
-  }, []);
-
-  const onSelectCity = useCallback(
-    async (cityId) => {
-      try {
-        console.log(unit);
-        const res = await fetch(
-          `https://api.weatherserver.com/weather/current/${cityId}/${unit}`,
-        );
-        const json = await res.json();
-
-        dispatch({ type: 'LOAD_SELECTED_CITY_SUCCESS', payload: json });
-      } catch (error) {}
-    },
-    [unit],
-  );
-
-  const units = useMemo(
-    () => [
-      {
-        value: 'C',
-        text: 'Celsius',
-      },
-      {
-        value: 'F',
-        text: 'Fahrenheit',
-      },
-    ],
-    [],
-  );
-
-  const onChangeUnits = useCallback((event) => {
-    dispatch({ type: 'CHANGE_UNIT', payload: event.target.value });
-  }, []);
-
-  console.log('Wether render');
+  const { location, loading, unit, error, selectedCity, cities } = data;
 
   return (
     <div className="weather-app">
@@ -74,8 +23,16 @@ const WeatherApp = () => {
           value={location}
           onChange={onChangeLocation}
         />
-        {cities.length > 0 && (
-          <OptionChips cities={cities} onSelectCity={onSelectCity} />
+        {location.length > 0 && (
+          <div className="search-results">
+            {loading ? (
+              <p>Loading...</p>
+            ) : cities.length > 0 ? (
+              <OptionChips cities={cities} onSelectCity={onSelectCity} />
+            ) : (
+              <p>City Not Found</p>
+            )}
+          </div>
         )}
         <Select
           id="weather-select"
@@ -85,7 +42,12 @@ const WeatherApp = () => {
           onChange={onChangeUnits}
         />
       </div>
-      {selectedCity && <SelectedCity data={selectedCity} />}
+      {error && <div className="error-panel" />}
+      {loading ? (
+        <div className="is-loading" />
+      ) : (
+        selectedCity && <SelectedCity data={selectedCity} />
+      )}
     </div>
   );
 };
