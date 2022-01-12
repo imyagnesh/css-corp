@@ -70,6 +70,10 @@ export const WeatherProvider = ({ children }) => {
     [unit],
   );
 
+  useEffect(() => {
+    onSelectCity('1277333');
+  }, [onSelectCity]);
+
   const units = useMemo(
     () => [
       {
