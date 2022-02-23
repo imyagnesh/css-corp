@@ -160,7 +160,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
   return {
     props: {
-      session,
+      // session,
     }, // will be passed to the page component as props
   };
 };

@@ -3,6 +3,8 @@ import React, { FC } from "react";
 
 const Auth: FC = ({ children }) => {
   const { data: session, status } = useSession({ required: true });
+  console.log(session);
+
   const isUser = !!session?.user;
   if (isUser) {
     return <>{children}</>;
