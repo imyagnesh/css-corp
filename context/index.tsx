@@ -5,6 +5,7 @@ import React, {
   FC,
   useCallback,
   useContext,
+  useEffect,
   useReducer,
 } from "react";
 import rootReducer, { RootInitState, RootStateType } from "reducers";
@@ -26,6 +27,15 @@ export const AuthProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(rootReducer, RootInitState);
   const router = useRouter();
 
+  useEffect(() => {
+    const token = sessionStorage.getItem("@token");
+    if (token) {
+      dispatch({ type: "AUTH_SUCCESS", payload: JSON.parse(token) });
+    } else {
+      dispatch({ type: "AUTH_RESET" });
+    }
+  }, []);
+
   const login = useCallback(
     async (
       values: typeof LoginIniValues,
@@ -36,6 +46,7 @@ export const AuthProvider: FC = ({ children }) => {
         const { remember_me, ...rest } = values;
         const res = await axiosInstance.post<AuthResponse>("login", rest);
         dispatch({ type: "AUTH_SUCCESS", payload: res.data });
+        sessionStorage.setItem("@token", JSON.stringify(res.data));
         action.resetForm();
         router.push("/");
       } catch (error) {
@@ -45,7 +56,7 @@ export const AuthProvider: FC = ({ children }) => {
         action.setSubmitting(false);
       }
     },
-    []
+    [router]
   );
 
   return (

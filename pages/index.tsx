@@ -1,10 +1,12 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Image, { ImageLoaderProps } from "next/image";
 import styles from "@styles/Home.module.css";
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import MainLayout from "@layout/MainLayout";
 import { useAuth } from "context";
+import { useRouter } from "next/router";
+import { getSession, useSession } from "next-auth/react";
 
 const myLoader = ({ src, width, quality }: ImageLoaderProps) => {
   return `https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg`;
@@ -44,8 +46,21 @@ const toBase64 = (str: string) =>
     : window.btoa(str);
 
 const Home = () => {
-  const { auth } = useAuth();
-  console.log(auth);
+  // const { auth } = useAuth();
+  // const router = useRouter();
+  // console.log(auth);
+
+  const { data, status } = useSession();
+
+  console.log("data", data);
+
+  console.log("status", status);
+
+  // useEffect(() => {
+  //   if (!auth?.accessToken) {
+  //     router.replace("/login");
+  //   }
+  // }, [auth, router]);
 
   return (
     <div className={styles.container}>
@@ -131,4 +146,22 @@ Home.getLayout = (page: ReactElement) => {
   return <MainLayout>{page}</MainLayout>;
 };
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+  console.log("session", session);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      session,
+    }, // will be passed to the page component as props
+  };
+};
 export default Home;
