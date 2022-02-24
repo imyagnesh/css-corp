@@ -71,4 +71,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
+Product.auth = true;
+
 export default Product;

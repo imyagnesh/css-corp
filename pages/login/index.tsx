@@ -1,10 +1,11 @@
 import AuthLayout from "@layout/AuthLayout";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import Head from "next/head";
 import { ReactElement } from "react";
 import { Formik, FormikHelpers } from "formik";
 import { useAuth } from "context";
 import { useRouter } from "next/router";
+import { GetServerSideProps } from "next";
 
 type Props = {};
 
@@ -15,24 +16,6 @@ export const LoginIniValues = {
 };
 
 const Login = (props: Props) => {
-  // const { data: session } = useSession();
-
-  // if (session) {
-  //   return (
-  //     <>
-  //       Signed in as {session.user.email} <br />
-  //       <button onClick={() => signOut()}>Sign out</button>
-  //     </>
-  //   );
-  // }
-  // return (
-  //   <>
-  //     Not signed in <br />
-  //     <button onClick={() => signIn()}>Sign in</button>
-  //   </>
-  // );
-  // const { login } = useAuth();
-  const router = useRouter();
   const { data, status } = useSession();
   console.log("status", status);
 
@@ -55,8 +38,6 @@ const Login = (props: Props) => {
             await signIn("credentials", {
               email: values.email,
               password: values.password,
-              redirect: true,
-              callbackUrl: "/",
             });
           } catch (error) {
             console.log(error);
@@ -160,6 +141,25 @@ const Login = (props: Props) => {
 
 Login.getLayout = (page: ReactElement) => {
   return <AuthLayout>{page}</AuthLayout>;
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+  console.log("session", session);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: true,
+      },
+    };
+  }
+  return {
+    props: {
+      // session,
+    }, // will be passed to the page component as props
+  };
 };
 
 export default Login;
